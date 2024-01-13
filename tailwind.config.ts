@@ -17,6 +17,7 @@ const config: Config = {
         bg: "#04011C",
         darkBlue: "#0D0D2D",
         fontWhite: "#E1D2E3",
+        startRating: "#FFD700",
       },
 
       blur: {
@@ -24,6 +25,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 };
 export default config;

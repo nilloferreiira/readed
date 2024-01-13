@@ -18,17 +18,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} font-sans bg-bg text-fontWhite`}>
         
-        <div className="relative overflow-hidden h-screen">
+        <div className={`
+          relative h-screen overflow-x-hidden z-50 
+          scrollbar scrollbar-thumb-rounded-full scrollbar-h-3 scrollbar-w-2 scrollbar-thumb-blue-950
+        `}>
           <div
             className={`
             absolute 
             top-1/4
-            w-[655px] h-[455px]
+            w-[655px] h-[335px]
             rounded-t-full
             lg:right-[35%]
             -right-28
             
-            sm:w-[655px] sm:h-[455px]
+            sm:w-[655px] sm:h-[355px]
             sm:rounded-t-full
             
             bg-indigo
