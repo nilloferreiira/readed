@@ -1,4 +1,7 @@
+"use client"
+
 export function NewBook() {
+
   return (
     <button
       className={`
