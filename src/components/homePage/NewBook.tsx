@@ -1,9 +1,11 @@
 "use client"
 
+import Link from "next/link";
+
 export function NewBook() {
 
   return (
-    <button
+    <Link href={"/newbook"}
       className={`
                 bg-indigo 
                 shadow-lg shadow-blue-500/20
@@ -17,6 +19,6 @@ export function NewBook() {
               `}
     >
       Novo livro
-    </button>
+    </Link>
   );
 }

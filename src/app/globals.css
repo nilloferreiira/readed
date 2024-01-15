@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.h1 {
+    @apply font-bold text-5xl text-fontWhite opacity-80
+}
+
+@layer utilities {
+    .placeholder-style::placeholder {
+       padding: 5px 12px;
+       margin: 0 auto;
+       text-align: center;
+    }
+  }

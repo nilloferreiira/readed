@@ -15,7 +15,7 @@ export function Main() {
     >
       <div className="flex flex-col gap-6 lg:gap-12 items-center lg:items-start justify-center">
         <NewBook />
-        <h1 className="font-bold text-5xl text-fontWhite opacity-80">
+        <h1 className="h1">
           Suas leituras
         </h1>
       </div>

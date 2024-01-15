@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} font-sans bg-bg text-fontWhite`}>
-        <BookProvider>
+        {/* <BookProvider> */}
           <div
             className={`
           relative h-screen overflow-x-hidden z-50 
@@ -45,7 +45,7 @@ export default function RootLayout({
             />
             {children}
           </div>
-        </BookProvider>
+        {/* </BookProvider> */}
       </body>
     </html>
   );
