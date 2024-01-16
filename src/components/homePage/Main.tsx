@@ -21,7 +21,7 @@ export function Main() {
       </div>
 
       {/* GridBooks  */}
-      <div className="flex items-center justify-items-center mx-auto lg:ml-16">
+      <div className="flex items-center justify-center w-full mx-auto lg:ml-16">
       <BooksGrid />
       </div>
     </main>

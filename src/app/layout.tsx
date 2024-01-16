@@ -22,8 +22,10 @@ export default function RootLayout({
           <div
             className={`
           relative h-screen overflow-x-hidden z-50 
-          scrollbar scrollbar-thumb-rounded-full scrollbar-h-3 scrollbar-w-2 scrollbar-thumb-blue-950
+          scrollbar-none
         `}
+        // caso eu mude de ideia sobre a scroll bar
+        // scrollbar-thumb-rounded-full scrollbar-h-3 scrollbar-w-2 scrollbar-thumb-blue-950
           >
             <div
               className={`
