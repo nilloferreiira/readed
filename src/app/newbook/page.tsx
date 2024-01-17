@@ -1,3 +1,4 @@
+import { Stars } from "@/components/FormBook/Stars";
 import { Header } from "@/components/header/Header";
 
 export default function FormBookPage() {
@@ -59,9 +60,7 @@ export default function FormBookPage() {
         {/* container 2 */}
         <div className="flex flex-col items-center justify-center lg:w-3/5 mt-8 lg:mt-16 gap-5">
           {/* stars  */}
-          <div>
-            stars component
-          </div>
+            <Stars />
 
           <button
             className={`

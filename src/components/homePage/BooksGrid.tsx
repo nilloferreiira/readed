@@ -9,6 +9,8 @@ export function BooksGrid() {
             w-full py-4
             z-0
         `}>
+
+        {/* criar map  */}
         <BookCard />
         <BookCard />
         <BookCard />
