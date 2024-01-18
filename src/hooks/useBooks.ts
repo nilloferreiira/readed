@@ -6,13 +6,6 @@ import axios from "axios";
 export function useBooks() {
   const [books, setBooks] = useState({} as BookProps);
 
-    // useEffect(()=> {
-    //   axios.get('http://localhost:3333/books').then(response => response.data).then(data => setBooks(data))
-    //   console.log(books)
-    // }, [])
-    
-    // const books: BookProps[] =  response.data
-
   
     setBooks({
       id: "z23",
