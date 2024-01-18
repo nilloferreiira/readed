@@ -1,7 +1,7 @@
 'use client'
 
+import { useState } from "react";
 import { StarComponent } from "./StarComponent";
-import { useBooks } from "@/hooks/useBooks";
 
 const items: number[] = [... new Array(5).keys() as any]
 
@@ -12,8 +12,7 @@ interface StarsProps {
   
 
 export function Stars({onStarChange}: StarsProps) {
-    const { activeIndex, setActiveIndex } = useBooks()
-    
+    const [activeIndex, setActiveIndex] = useState<number | undefined>();
 
     const onClickStar = (index: number) => {
         setActiveIndex(state => state === index ? undefined : index)

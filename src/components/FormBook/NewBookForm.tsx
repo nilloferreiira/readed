@@ -1,12 +1,10 @@
 "use client";
 
-import { useBooks } from "@/hooks/useBooks";
 import { Stars } from "./Stars";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 export function NewBookForm() {
   const [selectedStar, setSelectedStar] = useState<number | undefined>();
-
   
   if (selectedStar == undefined) {
     setSelectedStar(0)

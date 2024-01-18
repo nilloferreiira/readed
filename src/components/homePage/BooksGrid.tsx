@@ -1,6 +1,21 @@
+import axios from "axios";
 import { BookCard } from "./BookCard";
+import { BookProps } from "@/utils/bookInterface";
 
-export function BooksGrid() {
+export async function BooksGrid() {
+  let books: BookProps[] = [];
+
+  try {
+    const response = await axios.get("http://localhost:3333/books");
+
+    books = response.data.books;
+    if (!Array.isArray(response.data)) {
+      throw new Error("Data is not an array!");
+    }
+  } catch {
+    console.log("Erro na requisição");
+  }
+
   return (
     <div
       className={`
@@ -14,19 +29,16 @@ export function BooksGrid() {
             z-0
         `}
     >
-      {/* criar map  */}
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
+      {/* Iterando sobre Books */}
+      {books.map((item: any) => (
+        <BookCard
+          id={item.id}
+          name={item.name}
+          author={item.author}
+          review={item.review}
+          rating={item.rating}
+        />
+      ))}
     </div>
   );
 }
