@@ -1,10 +1,32 @@
 "use client";
 
+import { useBooks } from "@/hooks/useBooks";
 import { Stars } from "./Stars";
+import { FormEvent, useRef, useState } from "react";
 
 export function NewBookForm() {
+  const [selectedStar, setSelectedStar] = useState<number | undefined>();
+
+  
+  if (selectedStar == undefined) {
+    setSelectedStar(0)
+  }
+
+  const handleStarChange = (index: any) => {
+    setSelectedStar(index)
+  }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    formData.append("activeIndex", String(selectedStar));
+
+    console.log(Array.from(formData.entries()))
+  }
+
   return (
-    <form
+    <form onSubmit={handleSubmit}
       className={`
                           flex flex-col lg:flex-row 
                           items-center lg:items-start justify-between 
@@ -57,8 +79,7 @@ export function NewBookForm() {
 
       {/* container 2 */}
       <div className="flex flex-col items-center justify-center lg:w-2/6 mt-8 lg:mt-16 gap-5 lg:mx-0 mx-auto">
-        <Stars />
-
+        <Stars onStarChange={handleStarChange} />
         <button
           type="submit"
           className={`

@@ -1,16 +1,24 @@
 'use client'
 
-import { useState } from "react";
 import { StarComponent } from "./StarComponent";
+import { useBooks } from "@/hooks/useBooks";
 
 const items: number[] = [... new Array(5).keys() as any]
 
-export function Stars() {
-    const [activeIndex, setActiveIndex] = useState<number>();
+
+interface StarsProps {
+    onStarChange: (index: number | undefined) => void;
+  }
+  
+
+export function Stars({onStarChange}: StarsProps) {
+    const { activeIndex, setActiveIndex } = useBooks()
+    
 
     const onClickStar = (index: number) => {
         setActiveIndex(state => state === index ? undefined : index)
-        console.log('clicado') //apagar
+        // onStarChange(index + 1)
+        onStarChange(activeIndex === index ? undefined : index + 1);
     } 
 
     return (

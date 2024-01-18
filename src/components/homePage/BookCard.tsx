@@ -1,8 +1,6 @@
 "use client";
 import { PencilSimple, Star } from "@phosphor-icons/react";
 import { useBooks } from "@/hooks/useBooks";
-import { useContext } from "react";
-import BookContext from "@/context/BookProvider";
 
 export function BookCard() {
   const { book } = useBooks() 

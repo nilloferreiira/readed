@@ -1,6 +1,6 @@
 'use client'
 import { createContext, ReactNode, useState, useEffect } from "react";
-import { BookProps } from "@/lib/bookInterface";
+import { BookProps } from "@/utils/bookInterface";
 import { useBooks } from "@/hooks/useBooks";
 
 interface BookContextProps {

@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import { BookProps } from "@/lib/bookInterface";
+import { BookProps } from "@/utils/bookInterface";
 
 export function useBooks() {
   const [book, setBook] = useState({} as BookProps);
+
+  const [activeIndex, setActiveIndex] = useState<number | undefined>();
+
 
   useEffect(() => {
     setBook({
@@ -25,7 +28,7 @@ export function useBooks() {
     });
   };
 
-  return { book, setNewBook };
+  return { book, setNewBook, activeIndex, setActiveIndex };
 }
 
 
