@@ -10,12 +10,11 @@ export function Stars() {
 
     const onClickStar = (index: number) => {
         setActiveIndex(state => state === index ? undefined : index)
-        console.log('clicado')
-
+        console.log('clicado') //apagar
     } 
 
     return (
-        <div className="flex items-center justify-center w-full p-2">
+        <div className="flex items-center justify-center w-full p-2 z-0">
             {items.map((index) => (
                 <StarComponent key={`star_${index}`} isActive={index <= activeIndex!} onClick={()=> onClickStar(index)}/> 
             ))}
