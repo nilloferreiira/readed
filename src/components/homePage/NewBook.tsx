@@ -5,7 +5,7 @@ import Link from "next/link";
 export function NewBook() {
 
   return (
-    <Link href={"/newbook"}
+    <Link href={"/books/newbook"}
       className={`
                 bg-indigo 
                 shadow-lg shadow-blue-500/20
