@@ -9,14 +9,12 @@ const items: number[] = [... new Array(5).keys() as any]
 interface StarsProps {
     onStarChange: (index: number | undefined) => void;
   }
-  
 
 export function Stars({onStarChange}: StarsProps) {
     const [activeIndex, setActiveIndex] = useState<number | undefined>();
 
     const onClickStar = (index: number) => {
         setActiveIndex(state => state === index ? undefined : index)
-        // onStarChange(index + 1)
         onStarChange(activeIndex === index ? undefined : index + 1);
     } 
 

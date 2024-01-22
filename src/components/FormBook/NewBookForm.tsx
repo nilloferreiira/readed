@@ -1,30 +1,42 @@
 "use client";
 
+import { z } from 'zod'
 import { Stars } from "./Stars";
-import { FormEvent, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+
+
+const formSchema = z.object({
+  name: z.string().min(2),
+  author: z.string().min(2),
+  review: z.string(),
+  rating: z.number()
+})
+
+type FormSchema = z.infer<typeof formSchema>
 
 export function NewBookForm() {
-  const [selectedStar, setSelectedStar] = useState<number | undefined>();
+  const { register, handleSubmit, setValue } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      rating: 0,
+    }
+  })
   
-  if (selectedStar == undefined) {
-    setSelectedStar(0)
-  }
-
   const handleStarChange = (index: any) => {
-    setSelectedStar(index)
+    if(index == undefined) {
+      setValue('rating', 0);
+    } else {
+      setValue('rating', index);
+    }
   }
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const formData = new FormData(event.currentTarget)
-    formData.append("activeIndex", String(selectedStar));
-
-    console.log(Array.from(formData.entries()))
+  
+  function handleForm(data: FormSchema) {
+    console.log(data)
   }
 
   return (
-    <form onSubmit={handleSubmit}
+    <form onSubmit={handleSubmit(handleForm)}
       className={`
                           flex flex-col lg:flex-row 
                           items-center lg:items-start justify-between 
@@ -38,7 +50,7 @@ export function NewBookForm() {
         <h1 className="h1 text-center lg:text-left">Novo livro</h1>
         <input
           type="text"
-          name="name"
+          {...register('name')}
           placeholder="Nome do livro"
           className={`
                         p-3 
@@ -51,7 +63,7 @@ export function NewBookForm() {
 
         <input
           type="text"
-          name="author"
+          {...register('author')}
           placeholder="Autor do livro"
           className={`
                         p-3 
@@ -63,7 +75,7 @@ export function NewBookForm() {
         />
         <textarea
           placeholder="Resenha"
-          name="review"
+          {...register('review')}
           className={`
                         p-3
                         text-fontWhite
@@ -78,6 +90,7 @@ export function NewBookForm() {
       {/* container 2 */}
       <div className="flex flex-col items-center justify-center lg:w-2/6 mt-8 lg:mt-16 gap-5 lg:mx-0 mx-auto">
         <Stars onStarChange={handleStarChange} />
+        <input type="hidden" {...register('rating')} />
         <button
           type="submit"
           className={`
