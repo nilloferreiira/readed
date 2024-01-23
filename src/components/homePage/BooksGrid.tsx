@@ -32,6 +32,7 @@ export async function BooksGrid() {
       {/* Iterando sobre Books */}
       {books.map((item: any) => (
         <BookCard
+          key={`book_${item.id}`}
           id={item.id}
           name={item.name}
           author={item.author}

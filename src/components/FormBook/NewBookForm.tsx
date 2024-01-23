@@ -1,8 +1,10 @@
 "use client";
 
 import { z } from 'zod'
+import { api } from '@/lib/api';
 import { Stars } from "./Stars";
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 
@@ -10,29 +12,40 @@ const formSchema = z.object({
   name: z.string().min(2),
   author: z.string().min(2),
   review: z.string(),
-  rating: z.number()
+  rating: z.string()
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export function NewBookForm() {
+  const router = useRouter()
+
   const { register, handleSubmit, setValue } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      rating: 0,
+      rating: '0',
     }
   })
   
   const handleStarChange = (index: any) => {
     if(index == undefined) {
-      setValue('rating', 0);
+      setValue('rating', '0');
     } else {
-      setValue('rating', index);
+
+      setValue('rating', index.toString());
     }
   }
   
-  function handleForm(data: FormSchema) {
-    console.log(data)
+  //envio do formulario
+  async function handleForm(data: FormSchema) {
+    await api.post('/books', {
+      name: data.name,
+      author: data.author,
+      review: data.review,
+      rating: data.rating
+    })
+    
+    return router.push('/books')
   }
 
   return (
