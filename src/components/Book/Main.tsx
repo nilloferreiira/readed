@@ -1,26 +1,26 @@
-'use client'
+"use client";
 
 import { Footer } from "./Footer";
 import { useGetId } from "@/hooks/useGetId";
 import { BookProps } from "@/utils/bookInterface";
+import { Stars } from "../FormBook/Stars";
 
 interface books {
-    books: BookProps[]
+  books: BookProps[];
 }
 
 export function Main(props: books) {
   const { id } = useGetId();
-  
-  let book: BookProps
 
-    const foundBook = props.books.find(item => item.id === id);
+  let book: BookProps;
 
-    if (foundBook) {
-        book = foundBook
-    }
-    else {
-        throw new Error('Invalid Id')
-    }
+  const foundBook = props.books.find((item) => item.id === id);
+
+  if (foundBook) {
+    book = foundBook;
+  } else {
+    throw new Error("Invalid Id");
+  }
 
   return (
     <main
@@ -47,11 +47,15 @@ export function Main(props: books) {
                     `}
       >
         <div className="flex flex-col gap-2 mb-2 lg:mb-0">
-          <h1 className="font-bold text-4xl text-fontWhite opacity-80 lg:h1">{book.name}</h1>
-          <h2 className="font-normal text-base text-fontWhite">{book.author}</h2>
+          <h1 className="font-bold text-4xl text-fontWhite opacity-80 lg:h1">
+            {book.name}
+          </h1>
+          <h2 className="font-normal text-base text-fontWhite">
+            {book.author}
+          </h2>
         </div>
-        <span className="text-yellow-400">
-          {book.rating}
+        <span className="-ml-2">
+          <Stars initialIndex={book.rating} isClickable={false} />
         </span>
       </div>
 
@@ -61,9 +65,7 @@ export function Main(props: books) {
       <div className="flex flex-col gap-5">
         <h1 className="font-bold text-2xl text-fontWhite">Resenha</h1>
 
-        <p className="text-fontWhite opacity-70 text-xl">
-          {book.review}
-        </p>
+        <p className="text-fontWhite opacity-70 text-xl">{book.review}</p>
       </div>
 
       {/* footer  */}

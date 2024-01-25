@@ -2,12 +2,14 @@
 
 import { z } from 'zod'
 import { api } from '@/lib/api';
-import { Stars } from "./Stars";
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Stars } from '../FormBook/Stars';
+import { BookProps } from '@/utils/bookInterface';
+import { useGetId } from '@/hooks/useGetId';
 
-
+// Types
 const formSchema = z.object({
   name: z.string().min(2),
   author: z.string().min(2),
@@ -17,28 +19,47 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>
 
-export function NewBookForm() {
-  const router = useRouter()
+interface EditBookProps {
+    book: BookProps[]
+}
 
+// end Types
+
+export function EditBookForm(props: EditBookProps) {
+  const { id  } = useGetId()
+  
+  let books: BookProps
+
+  const foundBook = props.book.find(item => item.id === id);
+  if(foundBook) {
+    books = foundBook
+  } else {
+    throw new Error('Invalid Id')
+  }
+  
   const { register, handleSubmit, setValue } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      rating: '0',
+        name: books.name,
+        author: books.author,
+        review: books.review,
+        rating: String(books.rating),
     }
   })
   
   const handleStarChange = (index: any) => {
-    if(index == undefined) {
-      setValue('rating', '0');
-    } else {
-
-      setValue('rating', index.toString());
+      if(index == undefined) {
+          setValue('rating', '0');
+        } else {
+            
+            setValue('rating', index.toString());
+        }
     }
-  }
-  
-  //envio do formulario
+    
+    //envio do formulario
+  const router = useRouter()
   async function handleForm(data: FormSchema) {
-    await api.post('/books', {
+    await api.put(`/books/${books.id}`, {
       name: data.name,
       author: data.author,
       review: data.review,
@@ -60,7 +81,7 @@ export function NewBookForm() {
     >
       {/* container 1 */}
       <div className="flex flex-col w-full lg:w-2/6 gap-5">
-        <h1 className="h1 text-center lg:text-left">Novo livro</h1>
+        <h1 className="h1 text-center lg:text-left">Editar livro</h1>
         <input
           type="text"
           {...register('name')}
@@ -102,7 +123,7 @@ export function NewBookForm() {
 
       {/* container 2 */}
       <div className="flex flex-col items-center justify-center lg:w-2/6 mt-8 lg:mt-16 gap-5 lg:mx-0 mx-auto">
-        <Stars onStarChange={handleStarChange} isClickable={true} />
+        <Stars onStarChange={handleStarChange} initialIndex={books.rating} isClickable={true}/>
         <input type="hidden" {...register('rating')} />
         <button
           type="submit"
@@ -118,7 +139,7 @@ export function NewBookForm() {
                         transition-all outline-none
                         `}
         >
-          Adicionar
+          Salvar
         </button>
       </div>
     </form>
