@@ -6,8 +6,7 @@ import Link from "next/link";
 export function BookCard(book: BookProps) {
   return (
     <Link
-      // href={`/books/book/${book.id}`}
-      href={'/books/book'}
+      href={`/books/book/${book.id}`}
       className={`
                     bg-darkBlue
                     bg-opacity-80

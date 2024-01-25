@@ -18,6 +18,7 @@ const config: Config = {
         darkBlue: "#0D0D2D",
         fontWhite: "#E1D2E3",
         startRating: "#FFD700",
+        customRed: "#C12A2A"
       },
 
       blur: {

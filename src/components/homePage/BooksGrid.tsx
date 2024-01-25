@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "@/lib/api";
 import { BookCard } from "./BookCard";
 import { BookProps } from "@/utils/bookInterface";
 
@@ -6,14 +6,14 @@ export async function BooksGrid() {
   let books: BookProps[] = [];
 
   try {
-    const response = await axios.get("http://localhost:3333/books");
+    const response = await api.get("/books");
 
     books = response.data.books;
     if (!Array.isArray(response.data)) {
       throw new Error("Data is not an array!");
     }
   } catch {
-    console.log("Erro na requisição");
+    console.log("Erro na requisição do booksgrid");
   }
 
   return (
