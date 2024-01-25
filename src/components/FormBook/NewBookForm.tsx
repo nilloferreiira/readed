@@ -67,8 +67,10 @@ export function NewBookForm() {
           placeholder="Nome do livro"
           className={`
                         p-3 
-                        bg-darkBlue rounded-lg
+                        bg-darkBlue 
+                        focus:bg-darkBlue focus:bg-opacity-75
                         text-fontWhite
+                        rounded-lg
                         placeholder-fontwhite placeholder-opacity-80 placeholder-style
                         outline-none
                         `}
@@ -82,6 +84,7 @@ export function NewBookForm() {
                         p-3 
                         text-fontWhite
                         bg-darkBlue rounded-lg 
+                        focus:bg-darkBlue focus:bg-opacity-75
                         placeholder-fontwhite placeholder-opacity-80 placeholder-style
                         outline-none
                         `}
@@ -92,7 +95,7 @@ export function NewBookForm() {
           className={`
                         p-3
                         text-fontWhite
-                        bg-darkBlue rounded-lg 
+                        bg-darkBlue rounded-lg
                         placeholder-fontwhite placeholder-opacity-80 placeholder-style
                         outline-none
                         min-h-32

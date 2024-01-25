@@ -6,6 +6,15 @@
     @apply font-bold text-5xl text-fontWhite opacity-80
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+  background-color: #0D0D2D !important;
+  color: #ffffff !important;
+}
+
 @layer utilities {
     .placeholder-style::placeholder {
        padding: 5px 12px;
