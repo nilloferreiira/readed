@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import { Logout } from "../../hooks/auth/Logout"
+import { Logout } from "@/hooks/auth/Logout"
 
 export default function User() {
     const { handleLogout } = Logout()
