@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Flex as Roboto } from "next/font/google";
 import "./globals.css";
-import { BookProvider } from "@/context/BookProvider";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });
 
@@ -18,16 +18,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} font-sans bg-bg text-fontWhite`}>
-        <div
-          className={`
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID}>
+          <div
+            className={`
             relative h-screen overflow-x-hidden z-50 
             scrollbar-none
         `}
-          // caso eu mude de ideia sobre a scroll bar
-          // scrollbar-thumb-rounded-full scrollbar-h-3 scrollbar-w-2 scrollbar-thumb-blue-950
-        >
-          <div
-            className={`
+            // caso eu mude de ideia sobre a scroll bar
+            // scrollbar-thumb-rounded-full scrollbar-h-3 scrollbar-w-2 scrollbar-thumb-blue-950
+          >
+            <div
+              className={`
                         absolute 
                         top-1/4
                         w-[655px] h-[335px]
@@ -43,10 +44,11 @@ export default function RootLayout({
                         translate-y-full
                         blur-full
                         `}
-          />
-          
-          {children}
-        </div>
+            />
+
+            {children}
+          </div>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
