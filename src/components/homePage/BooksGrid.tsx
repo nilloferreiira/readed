@@ -1,12 +1,22 @@
 import { api } from "@/lib/api";
 import { BookCard } from "./BookCard";
 import { BookProps } from "@/utils/bookInterface";
+import {cookies} from "next/headers"
 
 export async function BooksGrid() {
   let books: BookProps[] = [];
+  
+  const token = cookies().get('token')?.value
 
   try {
-    const response = await api.get("/books");
+    console.log(token)
+    const response = await api.get("/books", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    console.log(response.data)
 
     books = response.data.books;
     if (!Array.isArray(response.data)) {

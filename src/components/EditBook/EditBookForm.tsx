@@ -1,13 +1,14 @@
 "use client";
 
 import { z } from "zod";
+import Cookies from 'js-cookie'
 import { api } from "@/lib/api";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Stars } from "../FormBook/Stars";
-import { BookProps } from "@/utils/bookInterface";
+import { useForm } from "react-hook-form";
 import { useGetId } from "@/hooks/useGetId";
+import { useRouter } from "next/navigation";
+import { BookProps } from "@/utils/bookInterface";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Types
 const formSchema = z.object({
@@ -55,6 +56,8 @@ export function EditBookForm(props: EditBookProps) {
     }
   };
 
+  const token = Cookies.get('token')
+
   //envio do formulario
   const router = useRouter();
   async function handleForm(data: FormSchema) {
@@ -63,6 +66,10 @@ export function EditBookForm(props: EditBookProps) {
       author: data.author,
       review: data.review,
       rating: data.rating,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
 
     return router.push("/books");

@@ -1,4 +1,6 @@
 import { api } from "@/lib/api";
+import { cookies } from "next/headers";
+import Cookies from 'js-cookie'
 import { useRouter } from "next/navigation";
 
 interface BookId {
@@ -12,8 +14,15 @@ export function Footer(props: BookId) {
         router.push(`/books/editbook/${props.id}`);
       };
 
+    // const token = cookies().get('token')?.value
+    const token = Cookies.get('token')
+
     async function deleteBook() {
-        await api.delete(`/books/${props.id}`)
+        await api.delete(`/books/${props.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
 
         return router.push('/books')
     }

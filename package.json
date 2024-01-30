@@ -13,6 +13,7 @@
     "@phosphor-icons/react": "^2.0.15",
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.6.5",
+    "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "next": "14.0.4",
     "react": "^18",
@@ -21,6 +22,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

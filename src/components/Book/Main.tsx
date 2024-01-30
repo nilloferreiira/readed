@@ -19,7 +19,7 @@ export function Main(props: books) {
   if (foundBook) {
     book = foundBook;
   } else {
-    throw new Error("Invalid Id");
+    throw new Error("Book not found");
   }
 
   return (

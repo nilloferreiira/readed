@@ -1,6 +1,7 @@
 "use client";
 
 import { z } from "zod";
+import Cookies from "js-cookie";
 import { api } from "@/lib/api";
 import { Stars } from "./Stars";
 import { useForm } from "react-hook-form";
@@ -34,6 +35,8 @@ export function NewBookForm() {
     }
   };
 
+  const token = Cookies.get('token')
+
   //envio do formulario
   async function handleForm(data: FormSchema) {
     await api.post("/books", {
@@ -41,6 +44,10 @@ export function NewBookForm() {
       author: data.author,
       review: data.review,
       rating: data.rating,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
 
     return router.push("/books");
