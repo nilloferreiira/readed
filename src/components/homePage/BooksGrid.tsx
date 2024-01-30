@@ -9,14 +9,11 @@ export async function BooksGrid() {
   const token = cookies().get('token')?.value
 
   try {
-    console.log(token)
     const response = await api.get("/books", {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
-
-    console.log(response.data)
 
     books = response.data.books;
     if (!Array.isArray(response.data)) {

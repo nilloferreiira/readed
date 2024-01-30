@@ -18,7 +18,6 @@ export default async function Book() {
     });
 
     books = response.data.books;
-    console.log(books)
     if (!Array.isArray(response.data)) {
       throw new Error("Data is not an array!");
     }
