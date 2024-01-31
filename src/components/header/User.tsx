@@ -5,7 +5,7 @@ export default function User() {
   const { name, picture } = getUser();
 
   return (
-    <div className="">
+    <div>
       <DropDown name={name} picture={picture} />
     </div>
   );

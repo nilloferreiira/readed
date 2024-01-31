@@ -24,6 +24,22 @@ const config: Config = {
       blur: {
         full: "350px",
       },
+
+      keyframes: {
+        slideDown: {
+          "0%": {transform : "translateY(-10px)"},
+          "100%": {transform : "translateY(0px)"},  
+        },
+
+        fadeIn: {
+          "0%": {opacity: "0"},
+          "100%": {opacity: "1"}
+        }
+      },
+      animation: {
+        "slide-down":"slideDown 0.3s ease-in-out",
+        "fade-in":"fadeIn 0.3s ease-in-out",
+      }
     },
   },
   plugins: [
