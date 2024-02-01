@@ -1,5 +1,9 @@
-import { BooksGrid } from "./BooksGrid";
+'use client'
+
 import { NewBook } from "./NewBook";
+import { BooksGrid } from "./BooksGrid";
+import { queryClient } from "@/lib/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 export function Main() {
   return (
@@ -17,8 +21,9 @@ export function Main() {
         <NewBook />
         <h1 className="h1">Suas leituras</h1>
       </div>
-
-      <BooksGrid />
+      <QueryClientProvider client={queryClient}>
+        <BooksGrid />
+      </QueryClientProvider>
     </main>
   );
 }

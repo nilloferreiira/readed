@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
-import { Roboto_Flex as Roboto } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
+import { queryClient } from "@/lib/react-query";
+import { Roboto_Flex as Roboto } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });
 
@@ -19,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} font-sans bg-bg text-fontWhite`}>
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID}>
+          {/* <QueryClientProvider client={queryClient}> */}
           <div
             className={`
             relative h-screen overflow-x-hidden z-50 
@@ -48,6 +51,7 @@ export default function RootLayout({
 
             {children}
           </div>
+          {/* </QueryClientProvider> */}
         </GoogleOAuthProvider>
       </body>
     </html>
