@@ -1,12 +1,15 @@
-import { getUser } from "@/lib/auth";
+'use client'
+
 import { DropDown } from "./dropdown/Dropdown";
+import { queryClient } from "@/lib/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 export default function User() {
-  const { name, picture } = getUser();
-
   return (
     <div>
-      <DropDown name={name} picture={picture} />
+      <QueryClientProvider client={queryClient}>
+        <DropDown/>
+      </QueryClientProvider>
     </div>
   );
 }

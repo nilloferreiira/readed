@@ -5,13 +5,11 @@ import Cookies from "js-cookie";
 import { BookCard } from "./BookCard";
 import { BookProps } from "@/utils/bookInterface";
 import { useQuery } from "@tanstack/react-query";
-import { cookies } from "next/headers"
 
 export function BooksGrid() {
   
   async function getBooks() {
     let booksResponse: BookProps[] = [];
-    // const token = cookies().get('token')?.value
     const token = Cookies.get('token')
 
     try {

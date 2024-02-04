@@ -1,9 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { queryClient } from "@/lib/react-query";
 import { Roboto_Flex as Roboto } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { QueryClientProvider } from "@tanstack/react-query";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });
 

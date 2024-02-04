@@ -28,9 +28,9 @@ interface EditBookProps {
 
 export function EditBookForm(props: EditBookProps) {
   const { id } = useGetId();
-
+  
   let books: BookProps;
-
+  
   const foundBook = props.book.find((item) => item.id === id);
   if (foundBook) {
     books = foundBook;
