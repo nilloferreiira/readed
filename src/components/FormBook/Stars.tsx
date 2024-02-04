@@ -17,7 +17,7 @@ export function Stars({onStarChange, initialIndex, isClickable}: StarsProps) {
 
     if(initialIndex) {
         useEffect(()=> {
-            setActiveIndex(initialIndex)
+            setActiveIndex(initialIndex - 1)
         }, [initialIndex])    
     }
 

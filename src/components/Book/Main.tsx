@@ -55,7 +55,7 @@ export function Main(props: books) {
           </h2>
         </div>
         <span className="-ml-2">
-          <Stars initialIndex={book.rating} isClickable={false} />
+          <Stars initialIndex={book.rating} isClickable={false}/>
         </span>
       </div>
 
