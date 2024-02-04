@@ -4,6 +4,7 @@ import { BookProps } from "@/utils/bookInterface";
 import { Header } from "@/components/header/Header";
 import { GoBackButton } from "@/components/Book/goBackButton";
 import { EditBookForm } from "@/components/EditBook/EditBookForm";
+import { EditBook } from "@/components/EditBook/edit-book";
 
 
 export default async function editBook() {
@@ -31,7 +32,8 @@ export default async function editBook() {
         <div>
         <Header />
         <GoBackButton/>
-        <EditBookForm book={books} />
+        {/* <EditBookForm book={books} /> */}
+        <EditBook />
         </div>
     )
 }
