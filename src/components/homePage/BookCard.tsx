@@ -1,7 +1,9 @@
 "use client";
-import { Star } from "@phosphor-icons/react";
-import { BookProps } from "@/utils/bookInterface";
 import Link from "next/link";
+import { ptBR } from "date-fns/locale";
+import { Star } from "@phosphor-icons/react";
+import { formatDistanceToNow } from "date-fns";
+import { BookProps } from "@/utils/bookInterface";
 
 export function BookCard(book: BookProps) {
   return (
@@ -22,6 +24,10 @@ export function BookCard(book: BookProps) {
                     hover:shadow-lg hover:shadow-blue-700/20
                 `}
     >
+      <div className="w-full flex items-center justify-start text-sm text-fontWhite/60">
+        Adicionado {formatDistanceToNow(book.date, { locale: ptBR, addSuffix: true })}
+      </div>
+
       <div className="flex items-center justify-between gap-2 w-full">
         <h1 className="text-xl font-bold flex items-center justify-center gap-2">
           {book.name}

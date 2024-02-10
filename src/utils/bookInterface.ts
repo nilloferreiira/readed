@@ -4,4 +4,5 @@ export interface BookProps {
   author: string;
   review: string;
   rating: number;
+  date: Date;
 }

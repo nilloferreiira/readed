@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 import { api } from "@/lib/api";
 import { Stars } from "../FormBook/Stars";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { BookProps } from "@/utils/bookInterface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
+import { useBooks } from "@/hooks/useBooks";
 
 // Types
 const formSchema = z.object({
@@ -24,38 +25,12 @@ type FormSchema = z.infer<typeof formSchema>;
 
 export function EditBookFormQuery() {
   const { id } = useGetId();
-  
-  async function getBooks() {
-    let booksResponse: BookProps[] = [];
-    const token = Cookies.get("token");
 
-    try {
-      const response = await api.get("/books", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      booksResponse = response.data.books;
-      if (!Array.isArray(response.data.books)) {
-        throw new Error("Data is not an array!");
-      }
-    } catch (error) {
-      console.log("Erro na requisição do booksgrid", error);
-    }
-
-    return booksResponse;
-  }
-
-  const { data: books } = useQuery({
-    queryKey: ["books"],
-    queryFn: getBooks,
-  });
+  const { books } = useBooks();
 
   const book = books?.find((item) => item.id === id);
 
-  
-    const { register, handleSubmit, setValue } = useForm<FormSchema>({
+  const { register, handleSubmit, setValue } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: book?.name,
@@ -73,27 +48,30 @@ export function EditBookFormQuery() {
     }
   };
 
-  const token = Cookies.get('token')
+  const token = Cookies.get("token");
 
   //envio do formulario
   const router = useRouter();
   async function handleForm(data: FormSchema) {
-    if(book) {
-        await api.put(`/books/${book.id}`, {
+    if (book) {
+      await api.put(
+        `/books/${book.id}`,
+        {
           name: data.name,
           author: data.author,
           review: data.review,
           rating: data.rating,
-        }, {
+        },
+        {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-    
-        return router.push("/books");
-      }
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
+      return router.push("/books");
     }
+  }
 
   return (
     <form
@@ -156,14 +134,13 @@ export function EditBookFormQuery() {
 
       {/* container 2 */}
       <div className="flex flex-col items-center justify-center lg:w-2/6 mt-8 lg:mt-16 gap-5 lg:mx-0 mx-auto">
-       
-       {book && (
-           <Stars
-             onStarChange={handleStarChange}
-             initialIndex={book.rating}
-             isClickable={true}
-           />
-       )}
+        {book && (
+          <Stars
+            onStarChange={handleStarChange}
+            initialIndex={book.rating}
+            isClickable={true}
+          />
+        )}
         <input type="hidden" {...register("rating")} />
         <button
           type="submit"

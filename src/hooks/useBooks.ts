@@ -16,11 +16,12 @@ export function useBooks() {
           });
     
           booksResponse = response.data.books;
+
           if (!Array.isArray(response.data)) {
             throw new Error("Data is not an array!");
           }
         } catch {
-          console.log("Erro na requisição do booksgrid");
+          console.log("Erro na chamada a api do booksgrid");
         }
     
         return booksResponse;

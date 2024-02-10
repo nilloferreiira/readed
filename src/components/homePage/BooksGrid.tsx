@@ -1,21 +1,23 @@
-'use client'
+"use client";
 
 import { BookCard } from "./BookCard";
-import { BookProps } from "@/utils/bookInterface";
 import { NewBookCard } from "./NewBookCard";
 import { useBooks } from "@/hooks/useBooks";
-import { ChangeEvent, useState } from "react";
 
 interface BooksSearch {
-  search: string; 
+  search: string;
 }
 
-export function BooksGrid(search: BooksSearch) { //lidar com a tipagem
+export function BooksGrid(search: BooksSearch) {
+  //lidar com a tipagem
   const { books } = useBooks();
- 
-  const filteredBooks = search.search !== ''
-  ? books?.filter(book => book.name.toLowerCase().includes(search.search.toLocaleLowerCase()))
-  : books
+
+  const filteredBooks =
+    search.search !== ""
+      ? books?.filter((book) =>
+          book.name.toLowerCase().includes(search.search.toLocaleLowerCase())
+        )
+      : books;
 
   return (
     <div
@@ -41,6 +43,7 @@ export function BooksGrid(search: BooksSearch) { //lidar com a tipagem
           author={book.author}
           review={book.review}
           rating={book.rating}
+          date={book.date}
         />
       ))}
     </div>
