@@ -1,65 +1,46 @@
 'use client'
 
-import { api } from "@/lib/api";
-import Cookies from "js-cookie";
 import { BookCard } from "./BookCard";
 import { BookProps } from "@/utils/bookInterface";
-import { useQuery } from "@tanstack/react-query";
+import { NewBookCard } from "./NewBookCard";
+import { useBooks } from "@/hooks/useBooks";
+import { ChangeEvent, useState } from "react";
 
-export function BooksGrid() {
-  
-  async function getBooks() {
-    let booksResponse: BookProps[] = [];
-    const token = Cookies.get('token')
+interface BooksSearch {
+  search: string; 
+}
 
-    try {
-      const response = await api.get("/books", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-  
-      booksResponse = response.data.books;
-      if (!Array.isArray(response.data)) {
-        throw new Error("Data is not an array!");
-      }
-    } catch {
-      console.log("Erro na requisição do booksgrid");
-    }
-
-
-    return booksResponse
-  }
-  
-
-  const { data: books } = useQuery({
-    queryKey: ['books'],
-    queryFn: getBooks,
-  })
-
+export function BooksGrid(search: BooksSearch) { //lidar com a tipagem
+  const { books } = useBooks();
+ 
+  const filteredBooks = search.search !== ''
+  ? books?.filter(book => book.name.toLowerCase().includes(search.search.toLocaleLowerCase()))
+  : books
 
   return (
     <div
       className={`
-      grid grid-cols-1 
+            grid 
+            grid-cols-1 
             md:grid-cols-2
             items-center
             justify-items-center
             lg:grid-cols-3
-            gap-4
+            gap-4 lg:gap-6
             w-full py-4
             z-0
         `}
     >
+      <NewBookCard />
       {/* Iterando sobre Books */}
-      {books?.map((item: any) => (
+      {filteredBooks?.map((book: any) => (
         <BookCard
-          key={`book_${item.id}`}
-          id={item.id}
-          name={item.name}
-          author={item.author}
-          review={item.review}
-          rating={item.rating}
+          key={`book_${book.id}`}
+          id={book.id}
+          name={book.name}
+          author={book.author}
+          review={book.review}
+          rating={book.rating}
         />
       ))}
     </div>

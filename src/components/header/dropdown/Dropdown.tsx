@@ -47,7 +47,7 @@ export function DropDown() {
           alt={"User iamge"}
           width={48}
           height={48}
-          className="rounded-full  hover:shadow-lg hover:shadow-blue-500/40 cursor-pointer"
+          className="rounded-full cursor-pointer hover:ring-indigo hover:ring-2"
         />
       )}
     </div>
