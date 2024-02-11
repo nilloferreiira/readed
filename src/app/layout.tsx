@@ -18,15 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} font-sans bg-bg text-fontWhite`}>
-        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID}>
-          {/* <QueryClientProvider client={queryClient}> */}
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID!}>
           <div
             className={`
             relative h-screen overflow-x-hidden z-50 
             scrollbar-none
         `}
-            // caso eu mude de ideia sobre a scroll bar
-            // scrollbar-thumb-rounded-full scrollbar-h-3 scrollbar-w-2 scrollbar-thumb-blue-950
           >
             <div
               className={`
@@ -49,7 +46,6 @@ export default function RootLayout({
 
             {children}
           </div>
-          {/* </QueryClientProvider> */}
         </GoogleOAuthProvider>
       </body>
     </html>
