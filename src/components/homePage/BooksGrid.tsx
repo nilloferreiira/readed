@@ -13,7 +13,7 @@ export function BooksGrid(search: BooksSearch) {
   const filteredBooks =
     search.search !== ""
       ? books?.filter((book) =>
-          book.name.toLowerCase().includes(search.search.toLocaleLowerCase())
+          book.name.toLowerCase().includes(search.search.toLocaleLowerCase()) || book.author.toLowerCase().includes(search.search.toLocaleLowerCase())
         )
       : books;
 
