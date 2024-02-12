@@ -55,6 +55,6 @@ __Tecnologias utilizadas:__
 	- zod
 	
 __Autenticação__:
- - Login com o Google OAuth
+- Login com o Google OAuth
 - token de autenticacao
-- middlawares de autenticação
+- Middlewares de autenticação
