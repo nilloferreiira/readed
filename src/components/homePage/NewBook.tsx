@@ -1,13 +1,17 @@
-"use client"
+"use client";
 
-import { Plus } from "@phosphor-icons/react";
 import Link from "next/link";
+import { Plus } from "@phosphor-icons/react";
+import * as Tooltip from "@radix-ui/react-tooltip";
 
 export function NewBook() {
-
   return (
-    <Link href={"/books/newbook"}
-      className={`
+    <Tooltip.Provider delayDuration={300}>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild>
+          <Link
+            href={"/books/newbook"}
+            className={`
                 bg-indigo 
                 shadow-lg shadow-blue-500/20
               text-fontWhite
@@ -19,8 +23,17 @@ export function NewBook() {
                 hover:opacity-100 
                 transition-all outline-none
               `}
-    >
-      <Plus size={24}/>
-    </Link>
+          >
+            <Plus size={24} />
+          </Link>
+        </Tooltip.Trigger>
+        <Tooltip.Portal>
+          <Tooltip.Content className="TooltipContent" sideOffset={5}>
+            Adicionar novo livro
+            <Tooltip.Arrow className="TooltipArrow" />
+          </Tooltip.Content>
+        </Tooltip.Portal>
+      </Tooltip.Root>
+    </Tooltip.Provider>
   );
 }
