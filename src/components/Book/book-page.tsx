@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Stars } from "../FormBook/Stars";
 import { Footer } from "./Footer";
 import Cookies from "js-cookie";
+import { ptBR } from "date-fns/locale";
+import { formatDistanceToNow } from "date-fns";
 
 export function BookPage() {
   const { id } = useGetId();
@@ -63,13 +65,22 @@ export function BookPage() {
           `}
       >
         {/* first container  */}
-        <div className="flex flex-col gap-2 mb-2 lg:mb-0">
+        <div className="flex flex-col gap-3 mb-2 lg:mb-0">
           <h1 className="font-bold text-4xl text-fontWhite opacity-80 lg:h1">
             {book?.name}
           </h1>
           <h2 className="font-normal text-base text-fontWhite">
-            {book?.author}
+            Autor: {book?.author}
           </h2>
+          
+            {book?.date && (
+              <h3
+                className="font-normal text-base text-fontWhite/80"
+              >
+                Adicionado {formatDistanceToNow(book.date, {locale: ptBR, addSuffix: true})}
+              </h3>
+            )}
+          
         </div>
         <span className="-ml-2">
           {book && <Stars initialIndex={book.rating} isClickable={false} />}
