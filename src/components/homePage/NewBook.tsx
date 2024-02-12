@@ -19,7 +19,8 @@ export function NewBook() {
                 p-3 
                 rounded-full 
                 absolute
-                top-[85%] left-[90%]
+                top-[90%] left-[80%]
+                lg:top-[85%] lg:left-[90%]
                 hover:opacity-100 
                 transition-all outline-none
               `}
@@ -29,7 +30,7 @@ export function NewBook() {
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content className="TooltipContent" sideOffset={5}>
-            Adicionar novo livro
+            Novo livro
             <Tooltip.Arrow className="TooltipArrow" />
           </Tooltip.Content>
         </Tooltip.Portal>
