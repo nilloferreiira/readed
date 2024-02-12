@@ -1,5 +1,6 @@
 "use client"
 
+import { Plus } from "@phosphor-icons/react";
 import Link from "next/link";
 
 export function NewBook() {
@@ -10,15 +11,16 @@ export function NewBook() {
                 bg-indigo 
                 shadow-lg shadow-blue-500/20
               text-fontWhite
-                opacity-85
-                py-3 px-6 
-                rounded-lg 
-                min-w-32 
+                opacity-90
+                p-3 
+                rounded-full 
+                absolute
+                top-[85%] left-[90%]
                 hover:opacity-100 
                 transition-all outline-none
               `}
     >
-      Novo livro
+      <Plus size={24}/>
     </Link>
   );
 }

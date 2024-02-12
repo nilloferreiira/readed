@@ -1,7 +1,6 @@
 "use client";
 
 import { BookCard } from "./BookCard";
-import { NewBookCard } from "./NewBookCard";
 import { useBooks } from "@/hooks/useBooks";
 
 interface BooksSearch {
@@ -9,7 +8,6 @@ interface BooksSearch {
 }
 
 export function BooksGrid(search: BooksSearch) {
-  //lidar com a tipagem
   const { books } = useBooks();
 
   const filteredBooks =
@@ -33,7 +31,6 @@ export function BooksGrid(search: BooksSearch) {
             z-0
         `}
     >
-      <NewBookCard />
       {/* Iterando sobre Books */}
       {filteredBooks?.map((book: any) => (
         <BookCard
