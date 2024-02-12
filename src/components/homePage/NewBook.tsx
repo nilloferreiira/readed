@@ -18,7 +18,7 @@ export function NewBook() {
                 opacity-90
                 p-3 
                 rounded-full 
-                absolute
+                fixed
                 top-[90%] left-[80%]
                 lg:top-[85%] lg:left-[90%]
                 hover:opacity-100 
