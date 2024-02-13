@@ -11,11 +11,12 @@ import { BookProps } from "@/utils/bookInterface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { useBooks } from "@/hooks/useBooks";
+import { toast } from "sonner";
 
 // Types
 const formSchema = z.object({
   name: z.string().min(2),
-  author: z.string().min(2),
+  author: z.string(),
   review: z.string(),
   rating: z.string(),
 });
@@ -54,22 +55,27 @@ export function EditBookFormQuery() {
   const router = useRouter();
   async function handleForm(data: FormSchema) {
     if (book) {
-      await api.put(
-        `/books/${book.id}`,
-        {
-          name: data.name,
-          author: data.author,
-          review: data.review,
-          rating: data.rating,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      try {
+        await api.put(
+          `/books/${book.id}`,
+          {
+            name: data.name,
+            author: data.author,
+            review: data.review,
+            rating: data.rating,
           },
-        }
-      );
-
-      return router.push("/books");
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        toast.success('Livro editado com sucesso!')
+  
+        return router.push("/books");
+      } catch {
+        toast.error('Erro ao editar o livro!')
+      }
     }
   }
 

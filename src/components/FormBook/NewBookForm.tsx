@@ -7,10 +7,11 @@ import { Stars } from "./Stars";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2),
-  author: z.string().min(2),
+  author: z.string(),
   review: z.string(),
   rating: z.string(),
 });
@@ -39,18 +40,25 @@ export function NewBookForm() {
 
   //envio do formulario
   async function handleForm(data: FormSchema) {
-    await api.post("/books", {
-      name: data.name,
-      author: data.author,
-      review: data.review,
-      rating: data.rating,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    try {
+      await api.post("/books", {
+        name: data.name,
+        author: data.author,
+        review: data.review,
+        rating: data.rating,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      toast.success('Livro adicionado com sucesso!')
+  
+      return router.push("/books");
 
-    return router.push("/books");
+    } catch {
+      toast.error('Erro ao adicionar o livro!')
+    }
   }
 
   return (

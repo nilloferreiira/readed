@@ -1,7 +1,7 @@
 import { api } from "@/lib/api";
-import { cookies } from "next/headers";
 import Cookies from 'js-cookie'
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface BookId {
     id: string | string[],
@@ -17,14 +17,20 @@ export function Footer(props: BookId) {
     // const token = cookies().get('token')?.value
     const token = Cookies.get('token')
 
-    async function deleteBook() {
+    async function handleDeleteBook() { 
+       try {
         await api.delete(`/books/${props.id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
+        toast.warning('Livro excluido com sucesso!')
+
 
         return router.push('/books')
+      } catch {
+        toast.error('Erro ao deletar o livro')
+      }
     }
     
     return (
@@ -47,7 +53,7 @@ export function Footer(props: BookId) {
           </button>
 
           <button 
-          onClick={deleteBook}
+          onClick={handleDeleteBook}
           className={`
                 bg-customRed 
                 shadow-lg shadow-red-500/20

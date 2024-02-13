@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto_Flex as Roboto } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Toaster } from "sonner";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             />
 
             {children}
+            <Toaster richColors/>
           </div>
         </GoogleOAuthProvider>
       </body>
