@@ -2,10 +2,15 @@
 
 import { Book } from "@phosphor-icons/react";
 
-export function Logo() {
+interface LogoProps {
+    textSize?: string,
+    LogoSize?: number,
+}
+
+export function Logo({textSize, LogoSize}: LogoProps) {
     return (
-        <div className={`flex text-fontWhite font-bold uppercase text-2xl`}>
-            <Book size={32} color="#c2d4ea" weight="thin" />
+        <div className={`flex items-center justify-center text-fontWhite font-bold uppercase text-${textSize ? textSize : '2xl'}`}>
+            <Book size={LogoSize ? LogoSize : 32} color="#c2d4ea" weight="thin" />
             READ<span className="text-indigo">.ED</span>
         </div>
     )

@@ -34,7 +34,7 @@ export default function RootLayout({
                         rounded-t-full
                         lg:right-[35%]
                         -right-28
-                        
+                        z-0
                         sm:w-[655px] sm:h-[355px]
                         sm:rounded-t-full
                         

@@ -42,5 +42,10 @@ input:-webkit-autofill:active {
        margin: 0 auto;
        text-align: center;
     }
+    .placeholder-style-left::placeholder {
+      padding: 5px 12px;
+      margin: 0 auto;
+      text-align: left;
+   }
   }
 
