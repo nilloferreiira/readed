@@ -6,6 +6,27 @@
     @apply font-bold text-5xl text-fontWhite opacity-80
 }
 
+.AlertDialogOverlay {
+  @apply bg-black/60 fixed inset-0 animate-fade-in
+}
+
+.AlertDialogContent {
+  @apply bg-bg border-2 border-blue-600/20 rounded-lg shadow-lg shadow-blue-700/20 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[500px] max-h-[85vh] space-y-4 p-6 animate-content-show
+}
+
+.AlertDialogContent:focus {
+  outline: none;
+}
+
+.AlertDialogTitle {
+  @apply m-0 text-fontWhite text-xl font-bold
+}
+
+.AlertDialogDescription {
+  @apply mb-5 text-fontWhite text-base leading-6
+}
+
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 

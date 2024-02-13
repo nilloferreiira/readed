@@ -32,6 +32,17 @@ const config: Config = {
           "100%": {transform : "translateY(0px)"},  
         },
 
+        contentShow: {
+          '0%': {
+            opacity: "0",
+            transform: 'translate(-50%, -48%) scale(0.96)',
+          },
+          '100%': {
+            opacity: "1",
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+        },
+
         fadeIn: {
           "0%": {opacity: "0"},
           "100%": {opacity: "1"}
@@ -40,6 +51,7 @@ const config: Config = {
       animation: {
         "slide-down":"slideDown 0.3s ease-in-out",
         "fade-in":"fadeIn 0.3s ease-in-out",
+        "content-show":"contentShow 0.15s ease-in-out"
       }
     },
   },
