@@ -11,7 +11,7 @@ import { useState } from "react";
 import { CircleNotch } from "@phosphor-icons/react";
 
 export function Login() {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   const router = useRouter();
 
