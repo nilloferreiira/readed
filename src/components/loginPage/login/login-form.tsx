@@ -1,21 +1,47 @@
 "use client";
 
-import { Envelope, Eye, EyeClosed } from "@phosphor-icons/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
 import { Mail, Lock } from "lucide-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
-export function LoginFormPage() {
+const loginFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
+type LoginFormSchema = z.infer<typeof loginFormSchema>;
+
+export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   function handleShowPassword() {
     setShowPassword(!showPassword);
   }
 
-  function handleSubmit() {}
+  const [isLoginForm, setIsLoginForm] = useState(false);
 
+  const { register, handleSubmit } = useForm<LoginFormSchema>({
+    resolver: zodResolver(loginFormSchema),
+  });
+
+  async function handleFormSubmit({ email, password }: LoginFormSchema) {
+    try {
+      console.log(email, password);
+    } catch {
+      toast.error("erro interno");
+    }
+  }
   return (
-    <form className="w-full flex flex-col items-center justify-center gap-6">
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className="w-full flex flex-col items-center justify-center gap-6 animate-fade-in"
+    >
       <h3 className="font-bold text-2xl">Faça login</h3>
+
       <div className="w-full h-12 flex items-center justify-around bg-bg hover:shadow-blue-500/20 transition-all shadow-lg shadow-blue-500/10 text-fontWhite  rounded-lg">
         <div className="flex items-center justify-start">
           <Mail
@@ -27,8 +53,9 @@ export function LoginFormPage() {
 
           <input
             type="email"
+            {...register("email")}
             placeholder="Email"
-            className="bg-transparent placeholder-fontwhite placeholder-opacity-80 placeholder-style-left outline-none py-5"
+            className="input placeholder-style-left placeholder-fontwhite"
           />
         </div>
 
@@ -47,7 +74,8 @@ export function LoginFormPage() {
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Senha"
-            className="bg-transparent placeholder-fontwhite placeholder-opacity-80 placeholder-style-left outline-none py-5"
+            {...register("password")}
+            className="input placeholder-style-left placeholder-fontwhite"
           />
         </div>
 
@@ -64,15 +92,9 @@ export function LoginFormPage() {
 
       <button
         type="submit"
-        onClick={handleSubmit}
         className="text-center text-fontWhite cursor-pointer w-full h-12 rounded-lg  outline-none bg-indigo shadow-lg shadow-blue-500/20 hover:bg-indigo/80"
       >
         Logar
-      </button>
-
-      <button className="group">
-        Nao tem conta?{" "}
-        <span className="group-hover:underline">Registre-se</span>
       </button>
     </form>
   );

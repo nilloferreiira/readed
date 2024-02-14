@@ -6,6 +6,8 @@
     @apply font-bold text-5xl text-fontWhite opacity-80
 }
 
+ /* radix Alert Dialog css */
+
 .AlertDialogOverlay {
   @apply bg-black/60 fixed inset-0 animate-fade-in
 }
@@ -24,6 +26,13 @@
 
 .AlertDialogDescription {
   @apply mb-5 text-fontWhite text-base leading-6
+}
+
+ /* radix Dialog css  */
+
+
+.input {
+  @apply bg-transparent placeholder-opacity-80 outline-none py-5 
 }
 
 
@@ -49,3 +58,5 @@ input:-webkit-autofill:active {
    }
   }
 
+
+  

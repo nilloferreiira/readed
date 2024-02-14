@@ -22,7 +22,7 @@ export default function RootLayout({
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID!}>
           <div
             className={`
-            relative h-screen overflow-x-hidden z-50 
+            relative h-screen overflow-x-hidden z-10 
             scrollbar-none
         `}
           >
@@ -42,6 +42,7 @@ export default function RootLayout({
                         lg:translate-y-3/4
                         translate-y-full
                         blur-full
+                        pointer-events-none
                         `}
             />
 
