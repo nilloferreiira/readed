@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: 'https://apireaded.onrender.com/',
+    baseURL: 'https://apireaded.onrender.com',
 })

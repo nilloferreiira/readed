@@ -5,6 +5,11 @@ import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
+import { api } from "@/lib/api";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
 
 const registerFormSchema = z.object({
   name: z.string().min(1),
@@ -18,6 +23,8 @@ type RegisterFormSchema = z.infer<typeof registerFormSchema>;
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const router = useRouter();
+
   function handleShowPassword() {
     setShowPassword(!showPassword);
   }
@@ -25,16 +32,29 @@ export function RegisterForm() {
     resolver: zodResolver(registerFormSchema),
   });
 
-  async function handleFormSubmit({name, email, password, confirmedPassword}: RegisterFormSchema) {
-    if (password !== confirmedPassword) {
+  async function handleFormSubmit(data: RegisterFormSchema) {
+    if (data.password !== data.confirmedPassword) {
       toast.error("As senhas são diferentes!");
 
       return;
     }
 
     try {
-      console.log(name, email, password);
-    } catch {
+      const signUpResponse = await api.post("/signup", {
+        name: data.name,
+        email: data.email,
+        password: data.password
+      });
+    
+      const { token } = signUpResponse.data;
+
+      Cookies.set("token", token, { path: "/", expires: 30 });
+
+      console.log(signUpResponse)
+
+      return router.push('/books')
+    } catch (error) {
+      console.error(error)
       toast.error("erro interno");
     }
   }
