@@ -7,11 +7,15 @@
 }
 
 .AlertDialogOverlay {
-  @apply bg-black/60 fixed inset-0 animate-fade-in
+  @apply bg-black/100 fixed inset-0 animate-fade-in
 }
 
-.AlertDialogContent {
+/* .AlertDialogContent {
   @apply bg-bg border-2 border-blue-600/20 rounded-lg shadow-lg shadow-blue-700/20 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[500px] max-h-[85vh] space-y-4 p-6 animate-content-show
+} */
+
+.AlertDialogTranslateAndAnimation {
+  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-content-show
 }
 
 .AlertDialogContent:focus {

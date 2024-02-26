@@ -15,7 +15,7 @@ export function AlertDeleteDialog({ handleDeleteBook }: deleteBook) {
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="AlertDialogOverlay" />
-        <AlertDialog.Content className="AlertDialogContent">
+        <AlertDialog.Content className="bg-bg border-2 z-50 border-blue-600/20 rounded-lg shadow-lg shadow-blue-700/20 lg:w-[90vw] lg:max-w-[500px] lg:max-h-[85vh] space-y-4 p-6 AlertDialogTranslateAndAnimation">
           <AlertDialog.Title className="AlertDialogTitle">
             Você tem certeza?
           </AlertDialog.Title>
