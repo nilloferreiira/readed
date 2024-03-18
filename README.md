@@ -58,3 +58,5 @@ __Autenticação__:
 - Login com o Google OAuth
 - token de autenticacao
 - Middlewares de autenticação
+
+![foto mais recente](src/assets/readmeimg.png)
