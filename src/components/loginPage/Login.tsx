@@ -26,6 +26,7 @@ export function Login() {
   const handleCretendialResponse = async (response: any) => {
     try {
       setLoading(true);
+      toast.warning("Devido a latência do servidor o login pode demorar até 50s")
       const data: CredentialsSchema = jwtDecode(response.credential);
 
       const registerResponse = await api.post("/register", {
